@@ -23,10 +23,10 @@ namespace MADWeather.Droid
 
 			// Get our button from the layout resource,
 			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
+			Button countClickButton = FindViewById<Button> (Resource.Id.CountClickButton);
 			
-			button.Click += delegate {
-				button.Text = string.Format ("{0} clicks!", count++);
+			countClickButton.Click += delegate {
+				countClickButton.Text = string.Format ("{0} clicks!", count++);
 			};
 		}
 	}

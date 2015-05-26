@@ -17,9 +17,9 @@ namespace MADWeather.iOS
 			base.ViewDidLoad ();
 
 			// Perform any additional setup after loading the view, typically from a nib.
-			Button.TouchUpInside += delegate {
+			CountClickButton.TouchUpInside += delegate {
 				var title = string.Format ("{0} clicks!", count++);
-				Button.SetTitle (title, UIControlState.Normal);
+				CountClickButton.SetTitle (title, UIControlState.Normal);
 			};
 		}
 
