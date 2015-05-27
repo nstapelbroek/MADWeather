@@ -17,9 +17,8 @@ namespace MADWeather.iOS
 			base.ViewDidLoad ();
 
 			// Perform any additional setup after loading the view, typically from a nib.
-			CountClickButton.TouchUpInside += delegate {
-				var title = string.Format ("{0} clicks!", count++);
-				CountClickButton.SetTitle (title, UIControlState.Normal);
+			FindWeatherButton.TouchUpInside += delegate {
+				updateWeather();
 			};
 		}
 
@@ -27,6 +26,14 @@ namespace MADWeather.iOS
 		{		
 			base.DidReceiveMemoryWarning ();		
 			// Release any cached data, images, etc that aren't in use.		
+		}
+
+		async void updateWeather() {
+			var location = LocationText.Text;
+			if (!String.IsNullOrEmpty (location)) {
+				Weather weather = await WeatherStation.FetchWeatherAsync (location);
+				TemperatureLabel.Text = String.Format("{0:0.##}°C", weather.Temperature);
+			}
 		}
 	}
 }

@@ -19,13 +19,29 @@ namespace MADWeather.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton CountClickButton { get; set; }
+		UIButton FindWeatherButton { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UITextField LocationText { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel TemperatureLabel { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (CountClickButton != null) {
-				CountClickButton.Dispose ();
-				CountClickButton = null;
+			if (FindWeatherButton != null) {
+				FindWeatherButton.Dispose ();
+				FindWeatherButton = null;
+			}
+			if (LocationText != null) {
+				LocationText.Dispose ();
+				LocationText = null;
+			}
+			if (TemperatureLabel != null) {
+				TemperatureLabel.Dispose ();
+				TemperatureLabel = null;
 			}
 		}
 	}
