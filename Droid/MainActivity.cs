@@ -23,11 +23,20 @@ namespace MADWeather.Droid
 
 			// Get our button from the layout resource,
 			// and attach an event to it
-			Button countClickButton = FindViewById<Button> (Resource.Id.CountClickButton);
-			
-			countClickButton.Click += delegate {
-				countClickButton.Text = string.Format ("{0} clicks!", count++);
+			Button findWeatherButton = FindViewById<Button> (Resource.Id.FindWeatherButton);
+			findWeatherButton.Click += delegate {
+				updateWeather();
 			};
+		}
+
+		async void updateWeather() {
+			EditText locationText = FindViewById<EditText> (Resource.Id.LocationText);
+			var location = locationText.Text;
+			if (!String.IsNullOrEmpty (location)) {
+				Weather weather = await WeatherStation.FetchWeatherAsync (location);
+				TextView temperatureLabel = FindViewById<TextView> (Resource.Id.TemperatureLabel);
+				temperatureLabel.Text = String.Format("{0:0.##}°C", weather.Temperature);
+			}
 		}
 	}
 }
