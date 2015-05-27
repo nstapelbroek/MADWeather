@@ -6,8 +6,6 @@ namespace MADWeather.iOS
 {
 	public partial class ViewController : UIViewController
 	{
-		int count = 1;
-
 		public ViewController (IntPtr handle) : base (handle)
 		{		
 		}
@@ -18,7 +16,7 @@ namespace MADWeather.iOS
 
 			// Perform any additional setup after loading the view, typically from a nib.
 			FindWeatherButton.TouchUpInside += delegate {
-				updateWeather();
+				updateWeather ();
 			};
 		}
 
@@ -28,11 +26,12 @@ namespace MADWeather.iOS
 			// Release any cached data, images, etc that aren't in use.		
 		}
 
-		async void updateWeather() {
+		async void updateWeather ()
+		{
 			var location = LocationText.Text;
 			if (!String.IsNullOrEmpty (location)) {
 				Weather weather = await WeatherStation.FetchWeatherAsync (location);
-				TemperatureLabel.Text = String.Format("{0:0.##}°C", weather.Temperature);
+				TemperatureLabel.Text = String.Format ("{0:0.##}°C", weather.Temperature);
 			}
 		}
 	}
