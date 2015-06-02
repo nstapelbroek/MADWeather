@@ -16,6 +16,10 @@ namespace MADWeather.Droid
 	{
 		LocationManager locationManager;
 
+		TextView temperatureLabel;
+
+		Button findWeatherByLocationButton;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -30,17 +34,29 @@ namespace MADWeather.Droid
 				updateWeather ();
 			};
 
-			this.locationManager = GetSystemService (Context.LocationService) as LocationManager;
+			findWeatherByLocationButton = FindViewById<Button> (Resource.Id.FindWeatherByLocationButton);
+			findWeatherByLocationButton.Click += delegate {
+				startLocationProvider ();
+				findWeatherByLocationButton.Visibility = ViewStates.Gone;
+			};
+
+			locationManager = GetSystemService (Context.LocationService) as LocationManager;
+			temperatureLabel = FindViewById<TextView> (Resource.Id.TemperatureLabel);
 		}
 
 		protected override void OnResume ()
 		{
 			base.OnResume ();
-			string Provider = LocationManager.GpsProvider;
+			startLocationProvider ();
+		}
 
+		protected void startLocationProvider ()
+		{
+			string Provider = LocationManager.GpsProvider;
 			if (locationManager.AllProviders.Contains (LocationManager.NetworkProvider)
-				&& locationManager.IsProviderEnabled (LocationManager.NetworkProvider)) {
+			    && locationManager.IsProviderEnabled (LocationManager.NetworkProvider)) {
 				locationManager.RequestLocationUpdates (LocationManager.NetworkProvider, 0, 0, this);
+				Log.Info ("location", "Requesting locationupdates for provider: " + Provider);
 			} else {
 				Log.Error ("location", Provider + " is not available. Does the device have location services enabled?");
 			}
@@ -52,7 +68,6 @@ namespace MADWeather.Droid
 			var location = locationText.Text;
 			if (!String.IsNullOrEmpty (location)) {
 				Weather weather = await WeatherStation.FetchWeatherAsync (location);
-				TextView temperatureLabel = FindViewById<TextView> (Resource.Id.TemperatureLabel);
 				temperatureLabel.Text = String.Format ("{0:0.##}°C", weather.Temperature);
 			}
 		}
@@ -60,8 +75,9 @@ namespace MADWeather.Droid
 		async void updateWeather (Location location)
 		{
 			Weather weather = await WeatherStation.FetchWeatherAsync (location.Latitude, location.Longitude);
-			TextView temperatureLabel = FindViewById<TextView> (Resource.Id.TemperatureLabel);
 			temperatureLabel.Text = String.Format ("{0:0.##}°C", weather.Temperature);
+			locationManager.RemoveUpdates (this);
+			findWeatherByLocationButton.Visibility = ViewStates.Visible;
 		}
 
 		public void OnLocationChanged (Location location)

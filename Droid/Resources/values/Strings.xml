@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="findWeather">Find Weather</string>
+	<string name="findWeatherByLocation">Find Weather by Location</string>
 	<string name="app_name">MADWeather.Droid</string>
 </resources>

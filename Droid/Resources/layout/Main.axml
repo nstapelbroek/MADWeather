@@ -12,6 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/findWeather" />
+    <Button
+        android:text="@string/findWeatherByLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/FindWeatherByLocationButton"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:visibility="gone" />
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
