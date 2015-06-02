@@ -9,6 +9,15 @@ namespace MADWeather
 {
 	public class WeatherStation
 	{
+		public static async Task<Weather> FetchWeatherAsync (double latitude, double longitude)
+		{
+			string url = String.Format (
+				"http://api.openweathermap.org/data/2.5/weather?lat={0}&lon={1}&units=metric"
+				, latitude, longitude);
+			var json = await FetchData (url);
+
+			return parseWeatherJson (json);
+		}
 		public static async Task<Weather> FetchWeatherAsync (string city)
 		{
 			string url = String.Format (
