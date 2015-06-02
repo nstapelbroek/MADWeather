@@ -23,17 +23,33 @@ namespace MADWeather.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton FindWeatherGPSButton { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITextField LocationText { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel TemperatureLabel { get; set; }
 
+		[Action ("FindWeatherButton_TouchUpInside:")]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		partial void FindWeatherButton_TouchUpInside (UIButton sender);
+
+		[Action ("FindWeatherGPSButton_TouchUpInside:")]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		partial void FindWeatherGPSButton_TouchUpInside (UIButton sender);
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (FindWeatherButton != null) {
 				FindWeatherButton.Dispose ();
 				FindWeatherButton = null;
+			}
+			if (FindWeatherGPSButton != null) {
+				FindWeatherGPSButton.Dispose ();
+				FindWeatherGPSButton = null;
 			}
 			if (LocationText != null) {
 				LocationText.Dispose ();
