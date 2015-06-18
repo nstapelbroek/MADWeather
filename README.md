@@ -17,7 +17,7 @@ Begin met het klonen [deze Git repository](https://github.com/nstapelbroek/MADWe
 ###Opdracht 2 - WeatherApp GPS
 Bij deze opdracht ga je GPS functionaliteit toevoegen aan de WeatherApp. Het idee achter deze opdracht is om je te laten zien dat je ook API-specifieke functionaliteiten kan gebruiken in Xamarin. Begin met het platform van je eigen mobiele telefoon (als het iOS of Android is. Kies anders wat je het handigst vindt). Als je deze opdracht binnen de tijd afkrijgt voor het gekozen platform, kan je daarna met het andere platform beginnen.
 
-Vul de klasse `WeatherStation` aan met een functie die het weer binnen kan halen op basis van GPS coördinaten. (Kijk op [openweathermap.org/current](openweathermap.org/current) voor de weather API) Voeg daarna voor Android en/of iOS hun API-specifieke GPS oplossing toe en laat op het scherm de temperatuur van je huidige locatie zien. Zorg ervoor dat niet constant een GPS locatie wordt opgevraagd.
+Vul de klasse `WeatherStation` aan met een functie die het weer binnen kan halen op basis van GPS coördinaten. (Kijk op [openweathermap.org/current](http://openweathermap.org/current) voor de weather API) Voeg daarna voor Android en/of iOS hun API-specifieke GPS oplossing toe en laat op het scherm de temperatuur van je huidige locatie zien. Zorg ervoor dat niet constant een GPS locatie wordt opgevraagd.
 
 ####iOS hint
 * In ‘Info.plist’ zorg dat je in de source een property van het type String met de naam `NSLocationWhenInUseUsageDescription` toevoegt. De waarde van deze property wordt door iOS gebruikt in de pop-up om te vragen om permissie voor het gebruik van GPS. Het maakt niet uit wat je hierin zet, als er maar wat in staat. Dit is van toepassing als je `RequestWhenInUseAuthorization` gebruikt.
